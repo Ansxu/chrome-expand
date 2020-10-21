@@ -1,0 +1,29 @@
+{
+    "manifest_version": 2,
+  
+    "name": "One-click",
+    "description": "This extension demonstrates a browser action with kittens.",
+    "version": "1.0",
+  
+    "permissions": [
+      "contextMenus",
+      "storage",
+      "tabs",
+      "http://*/*",
+      "https://*/*"
+    ],
+    "browser_action": { // 就是url栏右侧那些小图标啊
+      "default_icon": "icon.png" // 展示出来的图标图片
+      //"default_popup": "popup.html" // 点击图标后展示的气泡框页面（独立页面，可加载js / css）
+    },
+    "content_scripts":[{
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": ["js/jquery.min.js", "js/content-script.js"]
+    }],
+    "background": {
+      "scripts": ["js/background.js"]
+    }
+}
