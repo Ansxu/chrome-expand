@@ -1,29 +1,37 @@
 {
     "manifest_version": 2,
-  
-    "name": "One-click",
-    "description": "This extension demonstrates a browser action with kittens.",
+    "name": "华钜采集工具",
+    "description": "此工具用于远欧国际商品采集到ERP系统，使用前请先登录ERP系统，再进行采集！",
     "version": "1.0",
   
     "permissions": [
       "contextMenus",
-      "storage",
-      "tabs",
+      "cookies",
       "http://*/*",
-      "https://*/*"
+      "https://*/*",
+      "http://hjtc.erp.kjeyun.com",
+      "http://yo.erp.kjeyun.com",
+      "http://api.526zs.com",
+      "https://www.aliexpress.com"
     ],
-    "browser_action": { // 就是url栏右侧那些小图标啊
-      "default_icon": "icon.png" // 展示出来的图标图片
-      //"default_popup": "popup.html" // 点击图标后展示的气泡框页面（独立页面，可加载js / css）
+    "icons": {
+      "16": "icon_hj.png",
+      "48": "icon_hj.png",
+      "128": "icon_hj.png"
     },
     "content_scripts":[{
       "matches": [
         "http://*/*",
         "https://*/*"
       ],
-      "js": ["js/jquery.min.js", "js/content-script.js"]
+      "js": ["js/jquery.min.js", "js/content-script.js"],
+      "css":["css/content_script.css"],
+      "run_at": "document_start"
     }],
+    "web_accessible_resources": ["icon_hj.png","icon_hj.png"],
     "background": {
-      "scripts": ["js/background.js"]
-    }
+      "page": "background.html"
+      // "scripts": ["js/jquery.min.js","js/background.js"]
+    },
+    "content_security_policy": "script-src 'self' 'nonece-123456' 'unsafe-eval'; object-src 'self';"
 }
